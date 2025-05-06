@@ -28,13 +28,13 @@ class ResidentFactory extends Factory
             'phone' => fake()->phoneNumber,
             'address' => fake()->address,
 
-            'city' => City::factory(),
-            'area' => CityArea::factory()
+            'city_id' => City::factory(),
+            'city_area_id' => CityArea::factory()
         ];
     }
 
     public function withTaxiRides(int $count = 3): static
     {
-        return $this->has(TaxiRide::factory()->count($count));
+        return $this->has(TaxiRide::factory()->count($count), 'taxiRides');
     }
 }

@@ -2,20 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Resident;
+use App\Models\TaxiRide;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ResidentSeeder extends Seeder
+class TaxiRideSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Resident::factory()
-            ->count(25)
-            ->withTaxiRides(10)
+        TaxiRide::factory()
             ->create();
     }
 }

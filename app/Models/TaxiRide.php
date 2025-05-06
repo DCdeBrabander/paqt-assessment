@@ -20,6 +20,11 @@ class TaxiRide extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'taxi_company_id',
+        'resident_id',
+    ];
+
     /**
      * A ride always belongs to a single user since budget will not be split/
      * @return BelongsTo
