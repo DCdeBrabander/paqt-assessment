@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Resident::class);
             $table->foreignIdFor(TaxiCompany::class);
+
+            $table->string('from_address');
+            $table->string('to_address');
+
             # something with budget
             $table->timestamps();
         });

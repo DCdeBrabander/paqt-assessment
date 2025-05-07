@@ -21,9 +21,13 @@ class TaxiRideFactory extends Factory
      */
     public function definition(): array
     {
+        $resident = Resident::inRandomOrder()->first();
+        $company = $resident->cityArea->taxiCompany->first();
         return [
-            'taxi_company_id' => TaxiCompany::factory(),
-            'resident_id' => Resident::factory(),
+            'resident_id' => $resident->id,
+            'taxi_company_id' => $company->id,
+            'from_address' => $this->faker->address,
+            'to_address' => $this->faker->address,
         ];
     }
 }

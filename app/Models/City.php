@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- *
+ * 
  *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CityArea> $areas
  * @property-read int|null $areas_count
@@ -16,6 +16,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|City newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|City newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|City query()
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\CityFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|City whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|City whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|City whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|City whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class City extends Model

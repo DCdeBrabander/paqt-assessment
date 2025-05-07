@@ -29,4 +29,9 @@ class CityFactory extends Factory
     {
         return $this->has(CityArea::factory()->count($count), 'areas');
     }
+
+    public function withResidents(int $count = 5): static
+    {
+        return $this->hasResidents($count);
+    }
 }

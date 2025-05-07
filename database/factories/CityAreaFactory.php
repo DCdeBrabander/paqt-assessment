@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\City;
 use App\Models\CityArea;
+use App\Models\TaxiCompany;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +23,8 @@ class CityAreaFactory extends Factory
     {
         return [
             'name' => fake()->name,
-            'city_id' => City::factory(),
+            'city_id' => City::inRandomOrder()->first()->id,
+            'taxi_company_id' => TaxiCompany::inRandomOrder()->first()->id,
         ];
     }
 }

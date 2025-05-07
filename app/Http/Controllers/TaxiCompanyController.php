@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CityResource;
+use App\Http\Resources\TaxiRideResource;
+use App\Models\TaxiCompany;
+use App\Models\TaxiRide;
 use Illuminate\Http\Request;
 
-class CityController extends Controller
+class TaxiCompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return CityResource::collection(City::all());
+        //
+    }
+
+    public function rideIndex(TaxiCompany $taxiCompany)
+    {
+        return TaxiRide::whereTaxiCompanyId($taxiCompany->id)
+            ->get()
+            ->toResourceCollection();
     }
 
     /**

@@ -15,17 +15,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        fake()->locale('nl_NL');
-
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
 
         $this->call([
-            CitySeeder::class,
             TaxiCompanySeeder::class,
-            TaxiRideSeeder::class,
+            CitySeeder::class,
             ResidentSeeder::class,
         ]);
     }

@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CityResource;
+use App\Models\Resident;
 use Illuminate\Http\Request;
 
-class CityController extends Controller
+class TaxiRideController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return CityResource::collection(City::all());
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Resident $resident)
     {
-        //
+        dd($resident);
     }
 
     /**

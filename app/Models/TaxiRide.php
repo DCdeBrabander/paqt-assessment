@@ -14,6 +14,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaxiRide newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|TaxiRide query()
  * @property-read \App\Models\TaxiCompany|null $company
+ * @property int $id
+ * @property int $resident_id
+ * @property int $taxi_company_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\TaxiRideFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaxiRide whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaxiRide whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaxiRide whereResidentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaxiRide whereTaxiCompanyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TaxiRide whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class TaxiRide extends Model
@@ -21,6 +32,8 @@ class TaxiRide extends Model
     use HasFactory;
 
     protected $fillable = [
+        'from_address',
+        'to_address',
         'taxi_company_id',
         'resident_id',
     ];
@@ -38,7 +51,7 @@ class TaxiRide extends Model
      * A ride is always done by a single company
      * @return BelongsTo
      */
-    public function company(): BelongsTo
+    public function taxiCompany(): BelongsTo
     {
         return $this->belongsTo(TaxiCompany::class);
     }
