@@ -26,27 +26,39 @@ De volgende functionaliteit moet beschikbaar zijn via de API:
 - Het budget van actieve beschikkingen moet jaarlijks automatisch gereset kunnen worden.
 
 
+## Setup
+Run the installer script to boot up this Laravel Sail environment:
+```shell
+./install.sh
+```
+
 
 ## Fetch index of Residents for City
->Een callcenter moet alle bewoners van de gemeente Utrecht kunnen ophalen;
-```php
-
+> "Een callcenter moet alle bewoners van de gemeente Utrecht kunnen ophalen;"
+```http request
+GET /api/cities/{city}/residents
 ```
 
 ## Create (Plan) new Ride for Resident
-> Een callcenter moet een rit kunnen inboeken voor een bewoner;
-```php
+> "Een callcenter moet een rit kunnen inboeken voor een bewoner;"
+```http request
+POST /api/residents/{resident}/rides
 
+# JSON Body
+{
+    "from_address": "something 123",
+    "to_address": "other 234"
+}
 ```
 
 ## Fetch index of rides for TaxiCompany
-> Een taxibedrijf moet ritten kunnen opvragen waarvoor zij verantwoordelijk zijn;
+> "Een taxibedrijf moet ritten kunnen opvragen waarvoor zij verantwoordelijk zijn;"
 ```php
-
+GET /api/taxi/{taxiCompany}/rides
 ```
 
 ## Update Budgets of Residents
->Het budget van actieve beschikkingen moet jaarlijks automatisch gereset kunnen worden.
+> "Het budget van actieve beschikkingen moet jaarlijks automatisch gereset kunnen worden."
 
 ```php
 # Confirm the command is scheduled to run each day.
@@ -55,4 +67,18 @@ sail artisan schedule:list
 # Run the command manually
 sail artisan app:reset-resident-budgets
 
+```
+
+## Notes
+### API
+The API is set up using JSON resources and JsonApi Controllers.  
+Therefor every request should be sent with the following 'Accept' header:
+```
+Accept: application/json
+```
+
+### Database
+The database is currently seeded using random (faker) data. If you need to recreate data:
+```
+sail artisan migrate:fresh --seed 
 ```
