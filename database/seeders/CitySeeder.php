@@ -15,7 +15,6 @@ class CitySeeder extends Seeder
     {
         City::factory()
             ->count(5)
-//            ->withResidents(rand(5, 25))
             ->withAreas(4)
             ->create();
     }

@@ -29,18 +29,59 @@ De volgende functionaliteit moet beschikbaar zijn via de API:
 ## Setup
 Run the installer script to boot up this Laravel Sail environment:
 ```shell
-./install.sh
+./install.sh # ;-)
+```
+ If you really need to rebuild (https://laravel.com/docs/12.x/sail#rebuilding-sail-images):
+```shell
+docker compose down -v
+sail build --no-cache
+sail up
+# and check the key, .env and migrations ;-)
 ```
 
 
 ## Fetch index of Residents for City
 > "Een callcenter moet alle bewoners van de gemeente Utrecht kunnen ophalen;"
+### Request
 ```http request
 GET /api/cities/{city}/residents
+```
+### Response
+```json
+{
+    "data": [
+        {
+            "first_name": "Jamison",
+            "last_name": "Dibbert",
+            "address": "324 Balistreri Ways Suite 741\nStiedemannbury, MA 10324"
+        },
+        {
+            "first_name": "Freeman",
+            "last_name": "Ernser",
+            "address": "297 Ellie Lake\nNew Germainemouth, RI 71989"
+        },
+        {
+            "first_name": "Dora",
+            "last_name": "Turner",
+            "address": "78756 Ezra Divide Suite 223\nLindgrenburgh, TN 24512-0440"
+        },
+        {
+            "first_name": "Annetta",
+            "last_name": "Hegmann",
+            "address": "7334 Brekke Ford Suite 444\nEast Michelle, OH 63787-3030"
+        },
+        {
+            "first_name": "Clinton",
+            "last_name": "Stehr",
+            "address": "655 Littel Lane\nBaileyton, NH 89488"
+        }
+    ]
+}
 ```
 
 ## Create (Plan) new Ride for Resident
 > "Een callcenter moet een rit kunnen inboeken voor een bewoner;"
+### Request 
 ```http request
 POST /api/residents/{resident}/rides
 
@@ -50,12 +91,49 @@ POST /api/residents/{resident}/rides
     "to_address": "other 234"
 }
 ```
+### Response
+```json
+{
+    "from_address": "Something 123",
+    "to_address": "Other 234",
+    "taxi_company_id": 3,
+    "resident_id": 1,
+    "updated_at": "2025-05-08T22:37:11.000000Z",
+    "created_at": "2025-05-08T22:37:11.000000Z",
+    "id": 251,
+    "taxi_company": {
+        "id": 3,
+        "name": "Lakin-Upton",
+        "created_at": "2025-05-08T22:32:11.000000Z",
+        "updated_at": "2025-05-08T22:32:11.000000Z"
+    }
+}
+```
 
 ## Fetch index of rides for TaxiCompany
 > "Een taxibedrijf moet ritten kunnen opvragen waarvoor zij verantwoordelijk zijn;"
+### Request
 ```php
 GET /api/taxi/{taxiCompany}/rides
 ```
+### Response
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "resident_id": 1,
+            "taxi_company_id": 1,
+            "from_address": "852 Samanta Plain\nNorth Eriberto, OH 54231-6775",
+            "to_address": "2118 Alexandrine Island Suite 618\nZoilafurt, MS 99485",
+            "created_at": "2025-05-08T22:32:11.000000Z",
+            "updated_at": "2025-05-08T22:32:11.000000Z"
+        }
+        //...
+    ]
+}
+```
+
 
 ## Update Budgets of Residents
 > "Het budget van actieve beschikkingen moet jaarlijks automatisch gereset kunnen worden."

@@ -23,14 +23,17 @@ class ResidentFactory extends Factory
      */
     public function definition(): array
     {
+        $city = City::inRandomOrder()->first();
+        $cityArea = $city->areas()->inRandomOrder()->first();
+
         return [
             'firstname' => fake()->firstName,
             'lastname' => fake()->lastName,
             'phone' => fake()->phoneNumber,
             'address' => fake()->address,
 
-            'city_id' => City::factory(),
-            'city_area_id' => CityArea::factory()
+            'city_id' => $city->id,
+            'city_area_id' => $cityArea->id,
         ];
     }
 
