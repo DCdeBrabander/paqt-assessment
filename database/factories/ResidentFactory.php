@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\City;
 use App\Models\CityArea;
 use App\Models\Resident;
+use App\Models\ResidentTaxiBudget;
 use App\Models\TaxiRide;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -36,5 +37,10 @@ class ResidentFactory extends Factory
     public function withTaxiRides(int $count = 3): static
     {
         return $this->has(TaxiRide::factory()->count($count), 'taxiRides');
+    }
+
+    public function withBudget(): static
+    {
+        return $this->has(ResidentTaxiBudget::factory(), 'taxiBudget');
     }
 }

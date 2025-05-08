@@ -44,6 +44,11 @@ class Resident extends Model
 {
     use HasFactory;
 
+    public function taxiBudget(): HasOne
+    {
+        return $this->hasOne(ResidentTaxiBudget::class);
+    }
+
     public function taxiRides(): HasMany
     {
         return $this->hasMany(TaxiRide::class);

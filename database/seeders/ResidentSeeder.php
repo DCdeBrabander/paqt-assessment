@@ -15,6 +15,7 @@ class ResidentSeeder extends Seeder
     {
         Resident::factory()
             ->count(25)
+            ->withBudget()
             ->withTaxiRides(10)
             ->create();
     }

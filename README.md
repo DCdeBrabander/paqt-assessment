@@ -1,61 +1,58 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# PAQT Technical Assessment
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Bewoners van de gemeente Utrecht met een beperking komen in aanmerking voor een WMO-subsidie
+(Wet Maatschappelijke Ondersteuning). Dankzij deze subsidie kunnen bewoners tegen een beperkte
+vergoeding reizen met de ondersteuning die zij nodig hebben. Als een aanvraag wordt goedgekeurd door
+de gemeente dan ontvangt de bewoner een zogenaamde beschikking. Deze beschikking is een jaar
+geldig en wordt iedere jaar automatisch verlengd, tenzij de subsidie wordt stopgezet door de gemeente.
 
-## About Laravel
+Een beschikking heeft een budget, dit is het totale aantal kilometers dat de bewoner jaarlijks mag
+reizen zolang de beschikking actief is. Het budget wordt jaarlijks gereset zolang de beschikking actief
+is.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Bewoners met een beschikking kunnen via een callcenter een rit boeken bij een taxibedrijf. De
+gemeente is opgedeeld in zogenaamde percelen (= geografische gebieden) en voor ieder perceel is een
+enkel taxibedrijf verantwoordelijk voor het uitvoeren van ritten. Het woonadres van de bewoner is
+bepalend welk perceel gebruikt moet worden voor het boeken van een rit door het callcenter. We vragen
+je een API te maken waar de verschillende partijen gebruik van kunnen maken.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Authenticatie is al eens eerder gemaakt door een derde partij. Alleen de functionaliteit die hieronder
+wordt benoemd is relevant.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+De volgende functionaliteit moet beschikbaar zijn via de API:
+- Een callcenter moet alle bewoners van de gemeente Utrecht kunnen ophalen;
+- Een callcenter moet een rit kunnen inboeken voor een bewoner;
+- Een taxibedrijf moet ritten kunnen opvragen waarvoor zij verantwoordelijk zijn;
+- Het budget van actieve beschikkingen moet jaarlijks automatisch gereset kunnen worden.
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Fetch index of Residents for City
+>Een callcenter moet alle bewoners van de gemeente Utrecht kunnen ophalen;
+```php
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```
 
-## Laravel Sponsors
+## Create (Plan) new Ride for Resident
+> Een callcenter moet een rit kunnen inboeken voor een bewoner;
+```php
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```
 
-### Premium Partners
+## Fetch index of rides for TaxiCompany
+> Een taxibedrijf moet ritten kunnen opvragen waarvoor zij verantwoordelijk zijn;
+```php
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+```
 
-## Contributing
+## Update Budgets of Residents
+>Het budget van actieve beschikkingen moet jaarlijks automatisch gereset kunnen worden.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```php
+# Confirm the command is scheduled to run each day.
+sail artisan schedule:list
 
-## Code of Conduct
+# Run the command manually
+sail artisan app:reset-resident-budgets
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
