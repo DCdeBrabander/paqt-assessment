@@ -162,3 +162,10 @@ The database is currently seeded using random (faker) data. If you need to recre
 ```
 sail artisan migrate:fresh --seed 
 ```
+
+### Other
+1. Because of faker/dummy-data, "Utrecht" doesnt exist out of the box.  
+If you really want you have to update a city directly in your DB to have it named "Utrecht"
+2. I think it made sense to set up a RESTfull API and because of the "dont bother with authentication" 
+there is no authentication and therfor there is no authorization. **So in my interpretation "Call center" has no meaning here..**  
+It currently it doesn't matter what user/party does the request.
