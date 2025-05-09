@@ -169,3 +169,4 @@ If you really want you have to update a city directly in your DB to have it name
 2. I think it made sense to set up a RESTfull API and because of the "dont bother with authentication" 
 there is no authentication and therfor there is no authorization. **So in my interpretation "Call center" has no meaning here..**  
 It currently it doesn't matter what user/party does the request.
+3. All assignments: https://we.tl/t-XRO7QKrpnk (URL expires on 12-05-2025)
